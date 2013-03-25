@@ -57,7 +57,10 @@ static NSString * KEYS[N_KEYS] = {
 
 - (IBAction)connectButtonPressed:(UIButton *)sender {
 	if (!_connected && [_addressTextField.text length] && [_modelTextField.text length]) {
-		[[SamsungTVManager sharedInstance] connectToAddress:_addressTextField.text withTVModel:[_modelTextField.text uppercaseString] completion:^{
+		[[SamsungTVManager sharedInstance] connectToAddress:_addressTextField.text
+												withTVModel:[_modelTextField.text uppercaseString]
+												 remoteName:@"SamsungTVDemo"
+												 completion:^{
 			_connected = YES;
 			[sender setTitle:@"Disconnect" forState:UIControlStateNormal];
 			[self enableButtons:YES];

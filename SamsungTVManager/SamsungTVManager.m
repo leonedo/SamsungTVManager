@@ -52,6 +52,7 @@ static SamsungTVManager * SharedInstance = nil;
 
 	NSMutableArray * _pending;
 	NSString * _tvAppString;
+	NSString * _remoteName;
 
 	void(^_onOpen)(void);
 }
@@ -92,11 +93,12 @@ static SamsungTVManager * SharedInstance = nil;
 
 #pragma mark - Public Methods
 
-- (void)connectToAddress:(NSString *)address withTVModel:(NSString *)tvModel completion:(void(^)(void))completion {
+- (void)connectToAddress:(NSString *)address withTVModel:(NSString *)tvModel remoteName:(NSString *)name completion:(void(^)(void))completion {
 	if (_inputStream || _outputStream)
 		[self disconnect];
 	_onOpen = [completion copy];
 	_tvAppString = [NSString stringWithFormat:kTVAppStringFMT, tvModel];
+	_remoteName = name;
 	CFReadStreamRef readStream;
 	CFWriteStreamRef writeStream;
 	CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)address, 55000, &readStream, &writeStream);
@@ -212,7 +214,7 @@ static SamsungTVManager * SharedInstance = nil;
 		NSData * appString = [kAppString dataUsingEncoding:NSUTF8StringEncoding];
 		NSData * base64IP = [ip base64Data];
 		NSData * base64MAC = [mac base64Data];
-		NSData * base64RemoteName = [@"Turbo" base64Data];
+		NSData * base64RemoteName = [_remoteName base64Data];
 
 		NSMutableData * part1 = [NSMutableData new];
 		NSMutableData * message1 = [NSMutableData new];

@@ -18,7 +18,7 @@
 
 + (SamsungTVManager *)sharedInstance;
 - (void)sendRemoteKey:(NSString *)key;
-- (void)connectToAddress:(NSString *)address withTVModel:(NSString *)tvModel completion:(void(^)(void))completion;
+- (void)connectToAddress:(NSString *)address withTVModel:(NSString *)tvModel remoteName:(NSString *)name completion:(void(^)(void))completion;
 - (void)disconnect;
 
 @end
