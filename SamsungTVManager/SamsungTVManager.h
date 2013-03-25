@@ -3,7 +3,7 @@
 //  TorrentMonitor
 //
 //  Created by Mike Godenzi on 24.03.13.
-//  Copyright (c) 2013 Caffeine Apps. All rights reserved.
+//  Copyright (c) 2013 Mike Godenzi. All rights reserved.
 //
 //  Permission is given to use this source code file, free of charge, in any
 //  project, commercial or otherwise, entirely at your risk, with the condition
