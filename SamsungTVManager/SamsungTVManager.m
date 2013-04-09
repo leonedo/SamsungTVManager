@@ -164,7 +164,8 @@ static SamsungTVManager * SharedInstance = nil;
 			NSLog(@"Stream opened");
 			if (stream == _outputStream) {
 				[self performHandShake];
-				_onOpen();
+				if (_onOpen)
+					_onOpen();
 			}
 			break;
 		} case NSStreamEventHasBytesAvailable: {
