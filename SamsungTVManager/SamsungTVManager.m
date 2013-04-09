@@ -81,7 +81,10 @@ static SamsungTVManager * SharedInstance = nil;
 - (id)init {
 	if (!SharedInstance) {
 		self = [super init];
-		SharedInstance = self;
+		if (self) {
+			SharedInstance = self;
+			_pending = [NSMutableArray new];
+		}
 	} else if (self != SharedInstance)
         self = SharedInstance;
 	return self;
